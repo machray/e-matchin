@@ -1,3 +1,9 @@
+This angular project is built on angular-seed and adminlte.
+
+The team members are Ken McGuiness, Sean Clements, and Raymond Ortega (myself).
+
+This is only the front end of the project.
+
 # angular-seed — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
