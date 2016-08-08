@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">
+					<label>Job List</label>
+				</h3>
+			</div>
+			<form role="form" ng-submit="loadRequisitionList()">
+				<div class="box-header">
+					<input type="text" class="form-control" ng-model="searchString"  placeholder="Search for..."/>
+				</div>
+				<div class="box-body">
+					<table id="reqList" ng-table="tableParams1"
+						class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th><a href="" ng-click="orderByField='number'; reverseSort=!reverseSort">Req Number</th>
+								<th><a href="" ng-click="orderByField='jobCode'; reverseSort=!reverseSort">Job Code</th>
+								<th><a href="" ng-click="orderByField='hiringRoleName'; reverseSort=!reverseSort">Job Title</th>
+								<th><a href="" ng-click="orderByField='hiringRoleBand'; reverseSort=!reverseSort">Band</th>
+								<th><a href="" ng-click="orderByField='hiringLeader'; reverseSort=!reverseSort">Hiring Leader</th>
+								<th><a href="" ng-click="orderByField='recruiter'; reverseSort=!reverseSort">Recruiter</th>
+								<th><a href="" ng-click="orderByField='locationName'; reverseSort=!reverseSort">Location</th>
+								<th><a href="" ng-click="orderByField='lineOfBusiness'; reverseSort=!reverseSort">Line of Business</th>
+							</tr>
+						</thead>
+						<tbody cg-busy="reqListPromise">
+							<tr ng-repeat="requisition in requisitions | orderBy:orderByField:reverseSort | filter:searchString" 
+								ng-click="onSelectRequisition(requisition)"
+								ng-class="{table_hover: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+								<td>{{requisition.number}}</td>
+								<td>{{requisition.jobCode}}</td>
+								<td>{{requisition.hiringRoleName}}</td>
+								<td>{{requisition.hiringRoleBand}}</td>
+								<td>{{requisition.hiringLeaderName}}</td>
+								<td>{{requisition.recruiterName}}</td>
+								<td>{{requisition.locationName}}</td>
+								<td>{{requisition.lobName}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<div class=" box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">
+						<label>Employee Information</label>
+					</h3>
+					<button type="button" class="btn btn-primary pull-right" ng-click="saveEmployee()">Save</button>
+				</div>
+				<form role="form">
+					<div class="box-body">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="fullName">Full Name</label>
+								<input type="text" class="form-control" id="fullName" ng-model="employee.name">
+							</div>
+							<div class="form-group">
+								<label for="job">Job Title</label>
+								<select class="form-control" ng-model="employee.jobTitle" ng-change="updateJobBand(job.band)"
+									ng-options="job as job.name for job in ls.jobTitles">
+									<option></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="text" class="form-control" id="email" ng-model="employee.email">
+							</div>
+							<div class="form-group">
+								<label>
+									<strong>Willing to Relocate</strong>
+								</label>
+								<toggle-switch
+									on-label="Yes"
+									off-label="No"
+									ng-model="employee.relocatable"
+									knob-label="?">
+								</toggle-switch>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="ads">ADS ID</label>
+								<input type="text" class="form-control" id="ads" ng-model="employee.adsId">
+							</div>
+							<div class="form-group">
+								<label for="band">Band Level</label>
+								<input type="text" class="form-control" id="band" ng-model="employee.jobTitle.band" readonly>
+							</div>
+							<div class="form-group">
+								<label for="leader">Leader</label>
+								<input type="text" class="form-control" id="leader" ng-model="employee.leader.name">
+							</div>
+							<div class="form-group">
+								<label>Current Location</label>
+								<select class="form-control" ng-model="employee.location.id" ng-options="location.id as location.name for location in ls.locations" required>
+									<option></option>
+								</select>
+							</div>
+							</br>
+							
+						</div>
+					</div>
+				</form>
+</div>

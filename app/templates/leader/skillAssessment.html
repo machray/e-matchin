@@ -1,0 +1,42 @@
+<div class="box box-primary" cg-busy="onSelectEmployeePromise">
+	<div class="box-header">
+		<h3 class="box-title">
+			<label>Skill Assessment</label>
+		</h3>
+		<div class="btn-group" dropdown is-open="status.isopen">
+			<button id="single-button" type="button" class="btn btn-sm btn-primary" dropdown-toggle ng-disabled="disabled">
+				<i class="fa fa-info"></i>
+			</button>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+				<li style="width:500px; padding: 2px;" role="menuitem">Matches will be calculated based on Leader's Assessment (over Employee);</li>
+				<li style="width:500px; padding: 2px;" role="menuitem">however, the Leader's Assessment is optional and can be ignored</li>
+				<li style="width:500px; padding: 2px;" role="menuitem">if Leader is in agreement with an Employee's self-evaluation.</li>
+			</ul>
+		</div>
+		<div></br></div>
+		<input type="text" class="form-control" ng-model="searchSkills" placeholder="Search for..."/>
+	</div>
+	<div class="box-body">
+		<table id="example1" class="table table-hover table-striped table-no-padding no-bottom-margin" >
+			<thead>
+				<tr>
+					<th><a href="" ng-click="orderByField='skill.name'; reverseSort=!reverseSort">Skill Name</th>
+					<th><a href="" ng-click="orderByField='userAssessment.id'; reverseSort=!reverseSort">Employee</th>
+					<th><a href="" ng-click="orderByField='leaderAssessment.id'; reverseSort=!reverseSort">Leader Assessment</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="skills in selectedEmployee.employeesSkills | orderBy:orderByField:reverseSort | filter:searchSkills">
+					<td>{{skills.skill.name}}</td>
+					<td>{{skills.userAssessment.name}}</td>
+					<td><select id="leaderRating" class="form-control"
+							ng-model="skills.leaderAssessment.id" ng-change="updateAssessment(skills)"
+							ng-options="rating.id as rating.name for rating in ls.ratings" >
+							<option></option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

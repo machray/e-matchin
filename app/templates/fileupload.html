@@ -1,0 +1,8 @@
+								<div ng-show="!resumeExists">
+								    <input type="file" file-model="myFile"/>
+								    <button ng-click="fileUpload()" >upload</button>
+								</div>
+								<div ng-show="resumeExists">
+								    {{myFile}}
+								    <button>remove</button>
+								</div>

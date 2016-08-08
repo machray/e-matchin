@@ -1,0 +1,51 @@
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<!-- <pre>{{newLocation}}</pre> -->
+		<h3 class="box-title">Preferred Locations</h3>
+		<button class="btn btn-sm btn-primary pull-right" tooltip="Expand/Contract" type="button" ng-click="toggleLocation()">
+			<i ng-show="!showLocation" class="fa fa-plus-circle" />
+			<i ng-show="showLocation" class="fa fa-minus-circle" />
+		</button>
+	</div>
+	<div class="box-body" ng-show="showLocation">
+		<table id="locList" class="table table-hover table-striped table-no-padding no-bottom-margin"
+			ng-table="tableParams1">
+			<thead>
+				<tr>
+					<th>New Location</th>
+					<th>Add</th>
+				</tr>
+				<tr>
+					<td>
+						<select class="form-control" ng-model="newLocation.location"
+							ng-options="loc as loc.name for loc in ls.locations">
+							<option value="" disabled selected>Select Location</option>
+							<option></option>
+						</select>
+					</td>
+					<td><div class="button-wrapper"><button class="btn btn-sm btn-primary" tooltip="{{addLocationTooltip}}" type="button" ng-click="addLocation()" data-ng-disabled="disableAddLocation()">
+							<i class="fa fa-plus-circle" />
+						</button></div>
+					</td>
+				</tr>
+				<tr>
+					<th class="col-md-10">Preferred Locations</th>
+					<th class="col-md-2">Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="preferredLoc in employee.preferredLocations | orderBy:'location.name'" ng-class="{table_hover: hover}"
+					ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+					<td>{{preferredLoc.location.name}}</td>
+					<td>
+						<div style="text-align: center;">
+							<button class="btn btn-sm btn-primary" type="button" ng-click="removeLocation(preferredLoc)" tooltip="Remove Location">
+							<i class="fa fa-minus-circle" />
+						</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

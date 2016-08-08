@@ -1,0 +1,52 @@
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<!-- <pre>{{newJobTitle}}</pre> -->
+		<h3 class="box-title">Preferred Job Title</h3>
+		<button class="btn btn-sm btn-primary pull-right" tooltip="Expand/Contract" type="button" ng-click="toggleJobTitle()">
+			<i ng-show="!showJobTitle" class="fa fa-plus-circle" />
+			<i ng-show="showJobTitle" class="fa fa-minus-circle" />
+		</button>
+	</div>
+	<div class="box-body" ng-show="showJobTitle">
+		<table id="locList" class="table table-hover table-striped table-no-padding no-bottom-margin"
+			ng-table="tableParams1">
+			<thead>
+				<tr>
+					<th colspan="2">New Job Title</th>
+					<th>Add</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<select class="form-control" ng-model="newJobTitle.jobTitle"
+							ng-options="job as job.name for job in ls.jobTitles">
+							<option value="" disabled selected>Select Job Title</option>
+							<option></option>
+						</select>
+					</td>
+					<!-- <td><input type="text" class="form-control" id="band" ng-model="preferredTitle.jobTitle.band" readonly></td> -->
+					<td>
+						<button class="btn btn-sm btn-primary" type="button" ng-click="addJobTitle()" data-ng-disabled="disableAddJobTitle()">
+							<i class="fa fa-plus-circle" />
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<th class="col-md-7">Preferred Job Title</th>
+					<th class="col-md-3">Job Band</th>
+					<th class="col-md-2">Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="preferredTitle in employee.preferredJobTitles | orderBy:'jobTitle.name'" ng-class="{table_hover: hover}"
+					ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+					<td>{{preferredTitle.jobTitle.name}}</td>
+					<td><input type="text" class="form-control" id="band" ng-model="preferredTitle.jobTitle.band" readonly></td>
+					<td><button class="btn btn-sm btn-primary" type="button" ng-click="removeJobTitle(preferredTitle)">
+							<i class="fa fa-minus-circle" />
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

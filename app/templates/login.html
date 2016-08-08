@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-lg-12">
+       <div class="row" style="line-height: 1">
+        
+    <div class="row" style="text-align: center">
+    <div class="col-md-4"></div>
+    <div class="col-lg-4" style="margin-top: 20px">
+    <div class="box box-info" style="text-align: center" cg-busy="loginPromise">    
+      <form class="login-box-body" > 
+                <p class="login-box-msg" style="font-weight: 700">AUTHENTICATION REQUIRED!</p>
+          <p class="login-box-msg">Sign in with your ADS ID to start session</p>
+      
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="ADS Id" ng-model="credentials.username" required/>
+          </div>
+            <div style="margin-left: 120px">             
+            </div>
+             <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" ng-model="credentials.password" ng-disabled="true"/>
+             </div>
+          <div class="row">
+            <div class="col-xs-8">    
+            </div><!-- /.col -->
+            <div class="col-xs-4">
+              <button type="submit" ng-click="login()" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            </div><!-- /.col -->
+          </div>
+       
+                <!--        <a href="#">I forgot my password</a><br>
+                        <a href="register.html" class="text-center">Request Access</a> -->
+      </div><!-- /.login-box-body -->
+<!--          <div class="row alerts-container" data-ng-show="alert.show"> -->
+	   	 	<alert ng-repeat="item in alerts" type="{{item.type}}" close="closeAlert($index)" ng-show="item.showing">{{item.message}}</alert>
+<!-- 		</div> -->
+            </div>
+    </div>
+        <div class="col-md-4"></div>
+        </div>
+        <div class="row" style="line-height: 1">
+    <!-- <div class="col-lg-12" style="padding: 5px; margin-top: 25px">
+        <div style="margin-bottom: 0!important;font-size: 14px" class="callout callout-success">
+            <h4><i class="fa fa-hand-o-right"></i> USER EXPERIENCE ADVISE - IE9</h4>    
+            For best user experience, please use a modern browser such as IE 11, Chrome, Firefox or Safari.
+            IE9 is an old technology, does not support many modern web frameworks leading to a less than desired user experience. 
+            If you must use IE 9, please turn off 'Compatibility Mode&quot; via Developer Tools (accessed via F12 key). 
+        </div>
+    </div>   -->   
+</div>
+    </div>
+      
+    </div> 
+

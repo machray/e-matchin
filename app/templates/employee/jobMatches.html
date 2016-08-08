@@ -1,0 +1,95 @@
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">
+			<label>Jobs Matching Preferences</label>
+		</h3>
+			<div class="pull-right">
+				<toggle-switch
+					ng-change="loadRequisitions()"
+					ng-model="reqFilter.preferredJobTitle"
+					knob-label="Title">
+				</toggle-switch>
+				<toggle-switch
+					ng-change="loadRequisitions()"
+					ng-model="reqFilter.preferredLocation"
+					knob-label="Loc">
+				</toggle-switch>
+				<toggle-switch
+					ng-change="loadRequisitions()"
+					ng-model="reqFilter.preferredLob"
+					knob-label="LOB">
+				</toggle-switch>
+			</div>
+		<div>
+	</div>
+	<!-- <form role="form" ng-submit="loadRequisitionList()"> -->
+		<div class="box-header">
+			<input type="text" class="form-control" ng-model="searchString" placeholder="Search for..."/>
+		</div>
+		<div class="box-body">
+			<table id="reqList" class="table table-hover table-striped" ng-table="tableParams1">
+				<div style="margin-left:20%" cg-busy="{promise:loadRequisitionList,templateUrl:'templates/busyLoading.html'}"></div>
+				<thead>
+					<tr>
+						<th><a href="" ng-click="orderByField='number'; reverseSort=!reverseSort">Req Number</th>									
+						<th><a href="" ng-click="orderByField='hiringRoleName'; reverseSort=!reverseSort">Job Title</th>
+						<th><a href="" ng-click="orderByField='hiringRoleBand'; reverseSort=!reverseSort">Band</th>									
+						<th><a href="" ng-click="orderByField='locationName'; reverseSort=!reverseSort">Location</th>
+						<th><a href="" ng-click="orderByField='lobName'; reverseSort=!reverseSort">Line of Business</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="requisition in requisitions | filter:searchString | orderBy:orderByField:reverseSort" ng-class="{table_hover: hover}" 
+						ng-click="onSelectRequisition(requisition)" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+						<td>{{requisition.number}}</td>
+						<td>{{requisition.hiringRoleName}}</td>
+						<td>{{requisition.hiringRoleBand}}</td>
+						<td>{{requisition.locationName}}</td>
+						<td>{{requisition.lobName}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped" >
+				<thead>
+					<tr ng-show="requisition.requisitionId != null">
+						<th class="col-md-1"></th>
+						<th><a href="" ng-click="orderByField='skill.name'; reverseSort=!reverseSort">Skill</th>
+						<th><a href="" ng-click="orderByField='requirement.name'; reverseSort=!reverseSort">Requirement</th>
+						<th><a href="" ng-click="orderByField='importance.name'; reverseSort=!reverseSort">Importance</th>
+						<th>Add Skill</th>
+						<th class="col-md-3"></th>
+					</tr>
+				</thead>
+				<tbody cg-busy="loadReqPromise">
+					<tr ng-repeat="qualify in qualifications | orderBy:orderByField:reverseSort"
+						ng-show="requisition.number != null">
+						<td></td>
+						<td>
+							{{qualify.skill.name}}
+						</td>
+						<td>
+							{{qualify.requirement.name}}
+						</td>
+						<td>
+							{{qualify.importance.name}}
+						</td>
+						<td>
+							<div class="btn-group" dropdown is-open="status.isopen">
+								<button id="single-button" type="button" class="btn btn-sm btn-primary" ng-disabled="disableSkill(qualify.skill)" dropdown-toggle>
+									<i class="fa fa-plus-circle"></i>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+									<li style="padding: 2px;" role="menuitem" ng-click="addSkills(qualify.skill, {'id':1,'name':'Beginner'})">Beginner</li>
+									<li style="padding: 2px;" role="menuitem" ng-click="addSkills(qualify.skill, {'id':2,'name':'Intermediate'})">Intermediate</li>
+									<li style="padding: 2px;" role="menuitem" ng-click="addSkills(qualify.skill, {'id':3,'name':'Proficient'})">Proficient</li>
+									<li style="padding: 2px;" role="menuitem" ng-click="addSkills(qualify.skill, {'id':4,'name':'Expert'})">Expert</li>
+								</ul>
+							</div>
+						</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<!-- </form> -->
+</div>

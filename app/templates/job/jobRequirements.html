@@ -1,0 +1,81 @@
+<div class="box box-primary" cg-busy="addSkillPromise">
+	<!-- <pre>{{newSkill}}</pre> -->
+	<div class="box-header with-border">
+		<h3 class="box-title">
+			<label>Job Requirements</label>
+		</h3>
+		<button class="btn btn-sm btn-primary pull-right" type="button" ng-click="toggleAddSkill()">
+			<i ng-show="showAddSkill" class="fa fa-angle-down" />
+			<i ng-show="!showAddSkill" class="fa fa-angle-left" />
+		</button>
+	</div>
+	<div class="box-body">
+		<table id="matchList" class="table table-hover table-striped table-no-padding no-bottom-margin"
+			ng-table="tableParams1">
+			<thead>				
+				<tr ng-show="showAddSkill">
+					<th>New Requirement</th>
+					<th>Skill Requirement</th>
+					<th>Importance</th>
+					<th>Add</th>
+				</tr>
+				<tr ng-show="showAddSkill">
+					<td><input type="text" class="form-control" placeholder="Skill Set" ng-model="newSkill.skill" 
+							typeahead="item as item.name for item in ls.skillSet | filter:$viewValue | limitTo:8" />
+					</td>
+					<td><select id="requirement" class="form-control" ng-model="newSkill.requirement"
+							ng-options="rating as rating.name for rating in ls.ratings">
+							<option value="" disabled selected>Select Requirement</option>
+							<option></option>
+						</select>
+					</td>
+					<td><select id="importance" class="form-control" ng-model="newSkill.importance"
+							ng-options="import as import.name for import in ls.importance">
+							<option value="" disabled selected>Select Importance</option>
+							<option></option>
+						</select>
+					</td>
+					<td><div class="button-wrapper" tooltip="{{addSkillTooltip}}">
+							<button class="btn btn-sm btn-primary" type="button" 
+								ng-click="addSkill()" data-ng-disabled="disableAddSkill()">
+								<i class="fa fa-plus-circle" />
+							</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th class="col-md-5"><a href="" ng-click="jrOrderByField='skill.name'; reverseSort=!reverseSort"> Set</th>
+					<th class="col-md-3"><a href="" ng-click="jrOrderByField=['requirement.id','importance.id']; reverseSort=!reverseSort">Skill Requirement</th>
+					<th class="col-md-3"><a href="" ng-click="jrOrderByField=['importance.id','requirement.id']; reverseSort=!reverseSort">Importance</th>
+					<th class="col-md-1">Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="qualify in requisition.qualifications | orderBy:jrOrderByField:reverseSort"
+					ng-class="{table_hover: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+					<td><input type="text" class="form-control" placeholder="Skill Set"
+							ng-model="qualify.skill" ng-change="changeSkill(qualify)" 
+							typeahead="item as item.name for item in ls.skillSet | filter:$viewValue | limitTo:8" />
+					</td>
+					<td><select id="requirement" class="form-control"
+							ng-model="qualify.requirement.id" ng-change="changeSkill(qualify)"
+							ng-options="rating.id as rating.name for rating in ls.ratings">
+							<option></option>
+						</select>
+					</td>
+					<td><select id="importance" class="form-control"
+							ng-model="qualify.importance.id" ng-change="changeSkill(qualify)"
+							ng-options="import.id as import.name for import in ls.importance">
+							<option></option>
+						</select>
+					</td>
+					<td><button class="btn btn-sm btn-primary" type="button"
+							ng-click="removeSkill(qualify)">
+							<i class="fa fa-minus-circle"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<div class="box box-primary" cg-busy="loadMatchPromise">
+	<div class="box-header">
+		<h3 class="box-title">
+			<label>Direct Reports</label>
+		</h3>
+		<div></br></div>
+		<input type="text" class="form-control" ng-model="searchEmployees" placeholder="Search for..."/>
+	</div>
+	<div class="box-body">
+		<table id="example1" class="table table-hover table-striped table-no-padding no-bottom-margin" >
+			<thead>
+				<tr>
+					<th><a href="" ng-click="orderByField='employeeName'; reverseSort=!reverseSort">Name</th>
+					<th><a href="" ng-click="orderByField='jobTitleName'; reverseSort=!reverseSort">Job Title</th>
+					<th><a href="" ng-click="orderByField='statusName'; reverseSort=!reverseSort">Placement Status</th>
+					<th><a href="" ng-click="orderByField='releaseDate'; reverseSort=!reverseSort">Release Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="employee in employees | filter:searchEmployees | orderBy:orderByField:reverseSort" ng-class="{table_hover: hover}" 
+					ng-click="onSelectEmployee(employee)" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+					<td>{{employee.employeeName}}</td>
+					<td>{{employee.jobTitleName}}</td>
+					<td>{{employee.statusName}}</td>
+					<td>{{employee.releaseDate | date:'MM/dd/yyyy'}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

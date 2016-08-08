@@ -1,0 +1,23 @@
+<!-- <section class="content" > -->
+	<!-- <pre>{{employee}}</pre> -->
+<div cg-busy="[loadEmployeePromise]">
+	<div class="row">
+		<div class="col-md-6">
+			<div ng-include="'templates/employee/employeeInformation.html'"></div>
+				</div>
+				<div class="col-md-6">
+			<div ng-include="'templates/employee/employeeSkillSet.html'"></div>
+				</div>
+			</div>
+	<div class="row">
+		<div class="col-md-3" ng-include="'templates/employee/employeeFiles.html'"></div>
+		<div class="col-md-3" ng-include="'templates/employee/preferredJobTitles.html'"></div>
+		<div class="col-md-3" ng-include="'templates/employee/preferredLocation.html'"></div>
+		<div class="col-md-3" ng-include="'templates/employee/preferredLOB.html'"></div>
+		</div>
+	<div class="row">
+		<div class="col-md-12" ng-include="'templates/employee/jobMatches.html'"></div>
+		<!--<div class="col-md-12" ng-include="'templates/employee/jobRequirements.html'"></div>-->
+		</div>
+</div>
+<!-- </section> -->

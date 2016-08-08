@@ -1,0 +1,77 @@
+<div class="box box-primary">
+				<div class="box-header with-border">
+					<!-- <pre>{{newSkill}}</pre> -->
+					<h3 class="box-title">
+						<label>Employee Skill Sets</label>
+					</h3>
+					<div class="btn-group" dropdown is-open="status.isopen">
+						<button id="single-button" type="button" class="btn btn-sm btn-primary" dropdown-toggle ng-disabled="disabled">
+							<i class="fa fa-info"></i>
+						</button>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+							<li style="width:500px; padding: 2px;" role="menuitem">Beginner (basic knowledge)</li>
+							<li style="width:500px; padding: 2px;" role="menuitem">Intermediate (able to successfully complete tasks. Help from an expert may be required from time to time)</li>
+							<li style="width:500px; padding: 2px;" role="menuitem">Proficient (able to perform without assistance. Recognized as "a person to ask" within the team)</li>
+							<li style="width:500px; padding: 2px;" role="menuitem">Expert (solid experience. Recognized as "a person to ask" within the organization and capable of coaching others)</li>
+						</ul>
+					</div>
+					<button class="btn btn-sm btn-primary pull-right" tooltip="Add Skill" type="button" ng-click="toggleAddSkill()">
+						<i ng-show="showAddSkill" class="fa fa-angle-down" />
+						<i ng-show="!showAddSkill" class="fa fa-angle-left" />
+					</button>
+				</div>
+				<div class="box-body">
+					<table id="example1" class="table table-hover table-striped table-no-padding no-bottom-margin">
+						<thead>
+							<tr ng-show="showAddSkill">
+								<th>New Skill</th>
+								<th>Self Assessment</th>
+								<th>Add</th>
+							</tr>
+							<tr ng-show="showAddSkill">
+								<td><input type="text" class="form-control" ng-model="newSkill.skill" placeholder="Skill Set"
+										typeahead="skill as skill.name for skill in ls.skillSet | filter:$viewValue | limitTo:8" />
+								</td>
+								<td><select id="userAssessment" class="form-control" ng-model="newSkill.userAssessment"
+										ng-options="rating as rating.name for rating in ls.ratings">
+										<option value="" disabled selected>Select Skill Level</option>
+										<option></option>
+									</select>
+								</td>
+								<td><div class="button-wrapper" tooltip="{{addSkillTooltip}}">
+										<button class="btn btn-sm btn-primary" type="button" 
+											ng-click="addSkill()" data-ng-disabled="disableAddSkill()">
+											<i class="fa fa-plus-circle" />
+										</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="col-md-6"><a href="" ng-click="orderByField='skill.name'; reverseSort=!reverseSort">Skill Name</th>
+								<th class="col-md-5"><a href="" ng-click="orderByField='userAssessment.id'; reverseSort=!reverseSort">Self Assessment</th>
+								<th class="col-md-1">Remove</th>
+							</tr>
+						</thead>
+						<tbody>
+						<!-- <pre>{{ls.skillSet |json}}</pre> -->
+							<tr ng-repeat="employeeSkill in employee.employeesSkills | orderBy:orderByField:reverseSort">
+								<td><input type="text" class="form-control" placeholder="Skill Set" 
+										ng-model="employeeSkill.skill.name" ng-change="changeSkill(employeeSkill)"
+										typeahead="skill as skill.name for skill in ls.skillSet | filter:$viewValue | limitTo:8" />
+								</td>
+								<td><select id="rating" class="form-control" 
+										ng-model="employeeSkill.userAssessment.id" ng-change="changeSkill(employeeSkill)"
+										ng-options="rating.id as rating.name for rating in ls.ratings">
+										<option></option>
+									</select>
+								</td>
+								<td><button class="btn btn-sm btn-primary" type="button" 
+										ng-click="removeSkill(employeeSkill)" tooltip="Remove Skill">
+										<i class="fa fa-minus-circle" />
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>

@@ -1,0 +1,57 @@
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">
+			<label>Job Details</label>
+		</h3>
+		<button type="button" class="btn btn-primary pull-right"
+			ng-click="saveRequisition()">Save</button>
+	</div>
+	<div class="box-body">
+		<table id="employee" ng-table="tableParams1"
+			class="table table-striped table-no-padding no-bottom-margin">
+			<tbody>
+				<tr>
+					<td><label>Req No</label></td>
+					<td><input type="text" class="form-control" ng-model="requisition.number" /></td>
+					
+					<td><label>Hiring Leader</label></td>
+					<td><input type="text" class="form-control"
+							ng-model="requisition.hiringLeader" placeholder="Hiring Leader"
+							typeahead="employee as employee.name for employee in ls.employees | filter:$viewValue | limitTo:8" />
+					</td>
+					
+					<td><label>Recruiter</label></td>
+					<td><input type="text" class="form-control"
+							ng-model="requisition.recruiter" placeholder="Recruiter"
+							typeahead="employee as employee.name for employee in ls.employees | filter:$viewValue | limitTo:8" />
+					</td>
+				</tr>
+				<tr>
+					<td><label>Job Title</label></td>
+					<td><select id="jobId" class="form-control"
+							ng-model="requisition.jobTitle.id"
+							ng-options="job.id as job.name for job in ls.jobTitles">
+							<option></option>
+						</select>
+					</td>
+					
+					<td><label>Location</label></td>
+					<td><select id="locid" class="form-control"
+							ng-model="requisition.location.id"
+							ng-options="loc.id as loc.name for loc in ls.locations">
+							<option></option>
+						</select>
+					</td>
+					
+					<td><label>Line of Business</label></td>
+					<td><select id="locid" class="form-control"
+							ng-model="requisition.lineOfBusiness.id"
+							ng-options="lob.id as lob.name for lob in ls.lobs">
+							<option></option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

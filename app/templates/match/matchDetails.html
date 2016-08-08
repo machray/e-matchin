@@ -1,0 +1,38 @@
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">
+			<label>Match Details</label>
+		</h3>
+	</div>
+	<div class="box-body">
+		<table id="employee" ng-table="tableParams1"
+			class="table table-hover table-striped table-no-padding no-bottom-margin">
+			<tbody>
+				<tr>
+					<td class="col-lg-6"><label>Hiring Leader Approved</label></td>
+					<td class="col-lg-6">{{matchDetails.hiringLeaderApproved}}</td>
+				</tr>
+				<tr>
+					<td><label>Employee Leader Approved</label></td>
+					<td>{{matchDetails.employeeLeaderApproved}}</td>
+				</tr>
+				<tr>
+					<td><label>In Preferred Location?</label></td>
+					<td>{{matchDetails.inPreferredLocation}}</td>
+				</tr>
+				<tr>
+					<td><label>In Preferred LOB?</label></td>
+					<td>{{matchDetails.inPreferredLob}}</td>
+				</tr>
+				<tr>
+					<td><label>Match Status</label></td>
+					<td>{{matchDetails.matchStatus.name}}</td>
+				</tr>
+				<tr>
+					<td><label>Placed By</label></td>
+					<td>{{matchDetails.coordinator.name}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

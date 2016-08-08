@@ -1,0 +1,54 @@
+<div class="box box-primary" cg-busy="onSelectEmployeePromise">
+	<div class="box-header">
+		<h3 class="box-title">
+			<label>Selected Employee</label>
+		</h3>
+	</div>
+	<div class="box-body">
+		<div class="col-md-12">
+			<label for="fullName">Employee Name</label>
+			<input type="text" class="form-control" ng-model="selectedEmployee.employeeName" ng-readonly="true">
+		</div>
+	</div>
+	<!--
+	<div class="form-group">
+		<label for="Goal Rating">Goal Rating</label>
+		<input type="number" min="0" max="3" class="form-control" onBlur="calcAverageRating()" id="Goal Rating" placeHolder="Enter Rating">
+		<label for="Leadership Rating">Leadership Rating</label>
+		<input type="number" min="0" max="3" class="form-control" onBlur="calcAverageRating()" id="Leadership Rating" placeHolder="Enter Rating">
+		<label for="Average Rating">Average Rating</label>
+		<input type="number" class="form-control" id="Average Rating" placeHolder="Average" readonly>
+	</div>
+	-->
+	<div class="box-body">
+		<div class="col-md-8">
+			<label for="fullName">Job Title</label>
+			<input type="text" class="form-control" ng-model="selectedEmployee.jobTitleName" ng-readonly="true">
+		</div>	
+		<div class="col-md-4">
+			<label for="fullName">Band Level</label>
+			<input type="text" class="form-control" ng-model="selectedEmployee.jobTitleBand" ng-readonly="true">
+		</div>	
+	</div>
+	<div class="box-body">
+		<div class="col-md-6">
+			<label>Release Date</label>
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="fa fa-calendar"></i>
+				</div>
+				<input id="datetimepicker" type="datetime" class="form-control pull-right"  ng-change="updateReleaseDate()"
+					ng-model="selectedEmployee.releaseDate" datetime="MM/dd/yyyy"/>
+			</div>
+		</div>	
+		<div class="col-md-6">
+			<label for="fullName">Placement Status</label>
+			<select id="status" class="form-control"
+				ng-model="selectedEmployee.statusId" ng-change="updateMatchStatus()"
+				ng-options="status.id as status.name for status in ls.matchStatus" >
+				<option></option>
+			</select>
+		</div>
+	</div>
+	</br>
+</div>
