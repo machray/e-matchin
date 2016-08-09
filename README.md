@@ -1,6 +1,6 @@
 This angular project is built on angular-seed and adminlte.
 
-The team members are Ken McGuiness, Sean Clements, and Raymond Ortega (myself).
+The team members are Kenneth McGinnis, Sean Clements, and Raymond Ortega (myself).
 
 This is only the front end of the project.
 
